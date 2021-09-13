@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact name="sqliiteScala:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/sqliiteScala_jar</output-path>
+    <root id="root">
+      <element id="archive" name="sqliiteScala.jar">
+        <element id="module-output" name="sqliiteScala" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="library" level="application" name="scala-sdk-3.0.2" />
+        <element id="library" level="project" name="sqlite-jdbc-3.7.2" />
+        <element id="library" level="application" name="sqlite-jdbc-3.23.1" />
+      </element>
+    </root>
+  </artifact>
+</component>
