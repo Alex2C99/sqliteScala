@@ -7,7 +7,6 @@
       </element>
       <element id="directory" name="lib">
         <element id="library" level="application" name="scala-sdk-3.0.2" />
-        <element id="library" level="project" name="sqlite-jdbc-3.7.2" />
         <element id="library" level="application" name="sqlite-jdbc-3.23.1" />
       </element>
     </root>

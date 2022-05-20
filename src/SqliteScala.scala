@@ -4,19 +4,22 @@
   */
 
 import java.sql._
+import scala.language.implicitConversions
 
 object SqliteScala  extends App {
 
-    implicit class TypeResultSet(rs: ResultSet) extends Iterator[ClientType] {
-        extension (rs: ResultSet)
-            def getString(name: String, encoding: String) = String(rs.getBytes(name),encoding)
-
-        override def hasNext: Boolean = rs.next
-        override def next: ClientType = ClientType(rs.getInt("type"), rs.getString("name", "Windows-1251"))
-    }
-
     case class ClientType(tCode: Int, name: String) {
         override def toString: String = "--%3d\t%-20s".format(tCode, name)
+    }
+
+    extension (rs: ResultSet)
+        def getString(name: String, encoding: String) = String(rs.getBytes(name),encoding)
+
+    given Conversion[ResultSet, TypeResultSet] = TypeResultSet(_)
+
+    class TypeResultSet(rs: ResultSet) extends Iterator[ClientType] {
+        override def hasNext: Boolean = rs.next
+        override def next: ClientType = ClientType(rs.getInt("type"), rs.getString("name", "Windows-1251"))
     }
 
     Class.forName("org.sqlite.JDBC")
